@@ -14,8 +14,6 @@ jobs:
           route: GET /repos/steveworley/actions-tags/releases
           owner: steveworley
           repo: actions-tags
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           latest=$(echo "${{ steps.get_latest_release.outputs.data }}" | gojq '.[1].tag_name')
           echo "$latest"
