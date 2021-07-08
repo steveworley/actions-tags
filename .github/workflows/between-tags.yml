@@ -10,7 +10,7 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/steveworley/actions-tags/releases/latest
+          route: GET /repos/steveworley/actions-tags/releases
           owner: steveworley
           repo: actions-tags
         env:
