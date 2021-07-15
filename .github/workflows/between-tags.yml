@@ -27,4 +27,4 @@ jobs:
       #   run: echo "${{ fromJSON(steps.get_latest_release.outputs.body).tag_name }}"
 
       - name: Print last tag
-        run: echo "previous_tag: ${{ steps.previoustag.outputs.tag }} current_tag: ${{ github.ref }}"
+        run: echo "previous_tag - ${{ steps.previoustag.outputs.tag }} current_tag - ${{ github.ref }}"
