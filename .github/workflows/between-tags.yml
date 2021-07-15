@@ -8,23 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     container: singledigital/bay-ci-builder:3.x
     steps:
-      # - uses: octokit/request-action@v2.x
-      #   id: get_latest_release
-      #   with:
-      #     route: GET /repos/steveworley/actions-tags/releases/latest
-      #     owner: steveworley
-      #     repo: actions-tags
-      #   env:
-      #     GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - id: last_tag
+        run: echo "::set-output name=name::$(git ls-remote -q -t | tail -n2 | head -n1 | awk '{ print $NF }')"
 
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        with:
-          fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
-
-      # - name: Do the thing
-      #   run: echo "${{ fromJSON(steps.get_latest_release.outputs.body).tag_name }}"
-
-      - name: Print last tag
-        run: echo "previous_tag - ${{ steps.previoustag.outputs.tag }} current_tag - ${{ github.ref }}"
+      - name: Last tag
+        run: echo "last - ${{ steps.last_tag.name }} current - ${{ github.ref }}"
