@@ -7,7 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: git ls-remote -q -t
+      - id: last_tag
+        run: echo "::set-output name=name::$(git ls-remote -q -t | tail -n2 | head -n1 | awk '{ print $NF }')"
 
-      # - name: Last tag
-      #   run: echo "last - ${{ steps.last_tag.name }} current - ${{ github.ref }}"
+      - name: Last tag
+        run: echo "last - ${{ steps.last_tag.name }} current - ${{ github.ref }}"
