@@ -6,8 +6,9 @@ on:
 jobs:
   logLatestRelease:
     runs-on: ubuntu-latest
-    container: singledigital/bay-ci-builder:3.x
     steps:
+      - uses: actions/checkout@v2
+
       - id: last_tag
         run: echo "::set-output name=name::$(git ls-remote -q -t | tail -n2 | head -n1 | awk '{ print $NF }')"
 
