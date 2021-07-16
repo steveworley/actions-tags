@@ -9,6 +9,8 @@ jobs:
 
       - run: git fetch --all
 
+      - run: git tag -l --sort=-creatordate --format='%(refname:short)'
+
       - id: last_tag
         run: echo "::set-output name=name::$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n3 | tail -n1)"
 
