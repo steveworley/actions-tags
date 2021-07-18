@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - run: git fetch --all
+        with:
+          fetch-depth: 0
 
       - run: git tag -l --sort=-creatordate --format='%(refname:short)'
 
